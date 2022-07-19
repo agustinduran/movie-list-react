@@ -1,6 +1,15 @@
 import React from "react";
+import { useEffect, useState } from 'react';
 
 const CampoBuscar = (props) => {
+    const [consultaBusqueda, setConsultaBusqueda] = useState('');
+
+    const { callback } = props;
+
+    useEffect(() => {
+      callback(consultaBusqueda);
+    }, [consultaBusqueda]);
+
     return (
         <div className="col col-sm-4">
             <input 
@@ -8,8 +17,8 @@ const CampoBuscar = (props) => {
                 type="search"
                 placeholder="Buscar..."
                 aria-label="Search"
-                value={props.consultaBusqueda}
-                onChange={(event) => props.setConsultaBusqueda(event.target.value)}
+                value={consultaBusqueda}
+                onChange={(event) => setConsultaBusqueda(event.target.value)}
             />
         </div>
     );

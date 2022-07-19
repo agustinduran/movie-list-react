@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useParams } from "react-router-dom";
 import CampoBuscar from './CampoBuscar.js';
 
 const NavBar = (props) => {
-    const navigate = useNavigate();
+    const { children, mostrarBuscador, callback } = props;
     
     return (
         <div className="row d-flex align-items-center mb-4">
@@ -17,28 +17,26 @@ const NavBar = (props) => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <a 
-                                className="nav-link" 
-                                onClick={() => navigate('/peliculas')}
-                                href=''>Películas</a>
+                            <Link
+                                className="nav-link"
+                                to="/peliculas"
+                                style={{ textDecoration: "none", color: "white" }}
+                            >Películas</Link>
                         </li>
                         <li className="nav-item">
-                            <a 
+                            <Link
                                 className="nav-link"
-                                onClick={() => navigate('/favoritos')}
-                                href=''>Favoritos</a>
+                                to="/favoritos"
+                                style={{ textDecoration: "none", color: "white" }}
+                            >Favoritos</Link>
                         </li>
                     </ul>
                 </div>
-                <CampoBuscar consultaBusqueda={props.consultaBusqueda} setConsultaBusqueda={props.setConsultaBusqueda} />
-                {/* TODO: */}
-                {(props) => {
-                    console.log(props.mostrarBuscador);
-                    if (props.mostrarBuscador) {
-                        <CampoBuscar consultaBusqueda={props.consultaBusqueda} setConsultaBusqueda={props.setConsultaBusqueda} />
-                    }
-                }}
+                { mostrarBuscador && <CampoBuscar callback={ callback } /> }
             </nav>
+            <div className="section">
+                {children}
+            </div>
         </div>
     );
 }
