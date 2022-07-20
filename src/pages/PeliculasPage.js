@@ -1,11 +1,13 @@
 import React from "react";
 import PeliculasListado from '../components/PeliculasListado';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Layout from "../components/Layout";
-import NavBar from "../components/NavBar";
+import NavBar from "../components/NavBar"; 
+import AgregarFavorito from "../components/AgregarFavorito";
 
 const PeliculasPage = (props) => {
     const [peliculas, setPeliculas] = useState([]);
+    const { favorito, setFavorito } = props;
 
     const REACT_APP_APIKEY = process.env.REACT_APP_APIKEY;
 
@@ -21,11 +23,19 @@ const PeliculasPage = (props) => {
           setPeliculas([]);
     }
 
+    const agregarFavoritoHandler = (pelicula) => {
+        const newFavoritoList = [...favorito, pelicula];
+        setFavorito(newFavoritoList);
+    }
+
     return (
         <>
             <NavBar mostrarBuscador={ true } callback={ obtenerPeliculas } />
             <Layout>
-                <PeliculasListado peliculas={peliculas} />
+                <PeliculasListado 
+                    peliculas={ peliculas }
+                    favoritoComponente={ AgregarFavorito }
+                    favoritoHandler={ agregarFavoritoHandler }/>
             </Layout>
         </>
     );
