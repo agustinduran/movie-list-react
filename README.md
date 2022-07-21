@@ -20,7 +20,7 @@ Crear un listado de películas extraidos mediante la API Rest de [Open Movie Dat
 
 ## Ejecución
 
-Para ejecutar la aplicación son necesarios los siguientes comandos
+Para ejecutar la aplicación son necesarios correr los siguientes comandos
 ```
 npm i
 ```
