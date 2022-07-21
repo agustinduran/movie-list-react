@@ -35,7 +35,8 @@ const PeliculasPage = (props) => {
                 <PeliculasListado 
                     peliculas={ peliculas }
                     favoritoComponente={ AgregarFavorito }
-                    favoritoHandler={ agregarFavoritoHandler }/>
+                    favoritoHandler={ agregarFavoritoHandler }
+                    sinResultadosComponente={ () => <h2>No se encontraron películas. Por favor, utiliza el buscador o prueba con otra búsqueda.</h2> } />
             </Layout>
         </>
     );

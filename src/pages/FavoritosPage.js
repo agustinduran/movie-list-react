@@ -22,7 +22,8 @@ const FavoritosPage = (props) => {
                 <PeliculasListado 
                     peliculas={ favorito }
                     favoritoComponente={ EliminarFavorito }
-                    favoritoHandler={ eliminarFavoritoHandler }/>
+                    favoritoHandler={ eliminarFavoritoHandler }
+                    sinResultadosComponente={ () => <h2>No tiene películas en favoritos. Por favor, utiliza la sección Películas y agrege alguna a favoritos.</h2> } />
             </Layout>
         </>
     );
