@@ -7,6 +7,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
+import React from 'react';
 import { useState } from 'react';
 
 function App() {
