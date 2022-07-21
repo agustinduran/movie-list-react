@@ -1,13 +1,13 @@
 import React from "react";
 import PeliculasListado from '../components/PeliculasListado';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Layout from "../components/Layout";
 import NavBar from "../components/NavBar"; 
 import AgregarFavorito from "../components/AgregarFavorito";
 
 const PeliculasPage = (props) => {
     const [peliculas, setPeliculas] = useState([]);
-    const { favorito, setFavorito } = props;
+    const { favorito, setFavorito, guardarEnLocalStorage } = props;
 
     const REACT_APP_APIKEY = process.env.REACT_APP_APIKEY;
 
@@ -26,7 +26,13 @@ const PeliculasPage = (props) => {
     const agregarFavoritoHandler = (pelicula) => {
         const newFavoritoList = [...favorito, pelicula];
         setFavorito(newFavoritoList);
+        guardarEnLocalStorage(newFavoritoList);
     }
+
+    useEffect(() => {
+      const peliculasFavoritas = JSON.parse(localStorage.getItem('react-peliculas-favoritas')) || [];
+      setFavorito(peliculasFavoritas);
+    }, []);
 
     return (
         <>

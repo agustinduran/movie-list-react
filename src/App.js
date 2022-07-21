@@ -13,16 +13,20 @@ import { useState } from 'react';
 function App() {
   const [favorito, setFavorito] = useState([]);
 
+  const guardarEnLocalStorage = (items) => {
+    localStorage.setItem('react-peliculas-favoritas', JSON.stringify(items));
+  }
+
   return (
     <div className="App">
       <Router>
         <div className="container-fluid">
           <Switch>
             <Route exact path="/peliculas" >
-              <PeliculasPage favorito={favorito} setFavorito={setFavorito} />
+              <PeliculasPage favorito={favorito} setFavorito={setFavorito} guardarEnLocalStorage={guardarEnLocalStorage} />
             </Route>
             <Route exact path="/favoritos" >
-              <FavoritosPage favorito={favorito} setFavorito={setFavorito} />
+              <FavoritosPage favorito={favorito} setFavorito={setFavorito} guardarEnLocalStorage={guardarEnLocalStorage} />
             </Route>
           </Switch>
           <Route exact path="/" render={() => <Redirect to="/peliculas" />} />

@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import EliminarFavorito from "../components/EliminarFavorito";
 import Layout from "../components/Layout";
 import NavBar from "../components/NavBar";
 import PeliculasListado from "../components/PeliculasListado";
 
 const FavoritosPage = (props) => {
-    const { favorito, setFavorito } = props;
+    const { favorito, setFavorito, guardarEnLocalStorage } = props;
 
     const eliminarFavoritoHandler = (pelicula) => {
         const newFavoritoList = favorito.filter(
@@ -13,7 +13,13 @@ const FavoritosPage = (props) => {
 		);
 
 		setFavorito(newFavoritoList);
+        guardarEnLocalStorage(newFavoritoList);
     }
+
+    useEffect(() => {
+        const peliculasFavoritas = JSON.parse(localStorage.getItem('react-peliculas-favoritas')) || [];
+        setFavorito(peliculasFavoritas);
+    }, []);
 
     return (
         <>
