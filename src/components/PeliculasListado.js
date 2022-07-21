@@ -11,11 +11,12 @@ const PeliculasListado = (props) => {
                 props.peliculas.length > 0 
                 ? props.peliculas.map((pelicula, index) => (
                         <div className='col' key={`cart-${index}`} >
-                            <div className='image-container card'>
+                            <div className='image-container card mt-4'>
                                 <img src={pelicula.Poster} alt={pelicula.Title} ></img>
                                 <div 
-                                    className="overlay d-flex align-items-center justify-content"
-                                    onClick={() => favoritoHandler(pelicula)}>
+                                    onClick={() => favoritoHandler(pelicula)}
+                                    className='overlay d-flex align-items-center justify-content-center'
+                                >
                                     <FavoritoComponente/>
                                 </div>
                             </div>

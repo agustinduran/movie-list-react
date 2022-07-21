@@ -1,11 +1,16 @@
 .image-container {
+  display: flex;
+  flex-direction: row;
+  padding: 50px 30px;
+  justify-content: center;
+  border-bottom: 1px solid lightgray;
   position: relative;
   transition: transform 0.2s;
 }
 
 .image-container:hover {
   cursor: pointer;
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .image-container:hover .overlay{
